@@ -33,16 +33,16 @@ Overall Benefits of This Setup
 
 (a) Creating the EKS Cluster
 
-eksctl create cluster --name=Cloudaseem \
-                      --region=ap-south-1 \
-                      --zones=ap-south-1a,ap-south-1b \
+eksctl create cluster --name=MohanUdayana \
+                      --region=us-east-1 \
+                      --zones=us-east-1a,us-east-1b \
                       --version=1.30 \
                       --without-nodegroup
 Benefits:
 
 Creates an EKS Cluster – This command provisions an Amazon EKS cluster without any worker nodes.
 
-Multi-AZ Deployment – The --zones flag ensures high availability by distributing the cluster across multiple Availability Zones (ap-south-1a, ap-south-1b).
+Multi-AZ Deployment – The --zones flag ensures high availability by distributing the cluster across multiple Availability Zones (us-east-1a, us-east-1b).
 
 Version Control – Setting --version=1.30 ensures you are using a specific Kubernetes version for compatibility and stability.
 
@@ -53,8 +53,8 @@ EKS Console Verification – Once created, you can check the cluster in the AWS 
 (b) Associating IAM OIDC Provider
 
 eksctl utils associate-iam-oidc-provider \
-    --region ap-south-1 \
-    --cluster Cloudaseem \
+    --region us-east-1 \
+    --cluster MohanUdayana \
     --approve
 Benefits:
 
@@ -68,8 +68,8 @@ OIDC Authentication – Amazon EKS supports OpenID Connect (OIDC) authentication
 
 (c) Creating the Node Group
 
-eksctl create nodegroup --cluster=Cloudaseem \
-                       --region=ap-south-1 \
+eksctl create nodegroup --cluster=MohanUdayana \
+                       --region=us-east-1 \
                        --name=node2 \
                        --node-type=t3.medium \
                        --nodes=2 \
@@ -77,7 +77,7 @@ eksctl create nodegroup --cluster=Cloudaseem \
                        --nodes-max=4 \
                        --node-volume-size=20 \
                        --ssh-access \
-                       --ssh-public-key=cloudaseem \
+                       --ssh-public-key=MohanUdayana \
                        --managed \
                        --asg-access \
                        --external-dns-access \
@@ -98,7 +98,7 @@ Right-Sized Compute Power – --node-type=t3.medium balances cost and performanc
 
 Persistent Storage – --node-volume-size=20 ensures 20GB of storage per node.
 
-Secure SSH Access – --ssh-access --ssh-public-key=Cloudaseem allows secure SSH access using the specified public key.
+Secure SSH Access – --ssh-access --ssh-public-key=MohanUdayana allows secure SSH access using the specified public key.
 
 AWS Service Integrations – The following flags enable integrations with AWS services:
 
@@ -111,4 +111,5 @@ AWS Service Integrations – The following flags enable integrations with AWS se
 --appmesh-access → Enables Amazon App Mesh for microservice networking.
 
 --alb-ingress-access → Allows Kubernetes Ingress Controller to manage AWS ALB (Application Load Balancer).
+
 
