@@ -8,7 +8,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/Aseemakram19/amazon-prime-video-kubernetes.git'
+                git branch: 'main', url: 'https://github.com/MohanUdayana/Amazon-Prime-Video.git'
             }
         }        
         stage('Deploy to EKS Cluster') {
@@ -20,7 +20,7 @@ pipeline{
                     aws sts get-caller-identity
 
                     echo "Configuring kubectl for EKS cluster..."
-                    aws eks update-kubeconfig --region ap-south-1 --name Cloudaseem
+                    aws eks update-kubeconfig --region us-east-1 --name MohanUdayana
 
                     echo "Verifying kubeconfig..."
                     kubectl config view
@@ -57,7 +57,7 @@ pipeline{
                 """,
                 to: 'mohanudayana@gmail.com',
                 from: 'mohanudayana@gmail.com',
-                replyTo: 'mohanudayanas@gmail.com',
+                replyTo: 'mohanudayana@gmail.com',
                 mimeType: 'text/html',
                 attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
             )
