@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/RAVITEJA12344/amazon-prime-video-kubernetes.git',credentialsId: 'github-creds'
+                git branch: 'main', url: 'https://github.com/RAVITEJA12344/Amazon-Prime-Video.git',credentialsId: 'github-creds'
             }
         }
         stage("Sonarqube Analysis "){
