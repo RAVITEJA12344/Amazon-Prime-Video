@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/Aseemakram19/amazon-prime-video-kubernetes.git'
+                git branch: 'main', url: 'https://github.com/RAVITEJA12344/amazon-prime-video-kubernetes.git'
             }
         }
         stage("Sonarqube Analysis "){
