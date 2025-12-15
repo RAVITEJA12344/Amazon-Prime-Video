@@ -88,25 +88,29 @@ pipeline{
     always {
         script {
             def buildStatus = currentBuild.currentResult
-            def buildUser = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')[0]?.userId ?: 'Github User'
-            
-            emailext (
+            def causes = currentBuild.getBuildCauses('hudson.model.Cause$UserIdCause')
+            def buildUser = causes ? causes[0].userId : 'GitHub Trigger'
+
+            emailext(
                 subject: "Pipeline ${buildStatus}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
-                    <p>This is a Jenkins amazon-prime-video CICD pipeline status.</p>
-                    <p>Project: ${env.JOB_NAME}</p>
-                    <p>Build Number: ${env.BUILD_NUMBER}</p>
-                    <p>Build Status: ${buildStatus}</p>
-                    <p>Started by: ${buildUser}</p>
-                    <p>Build URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+                    <p><b>Amazon Prime Video CI/CD Pipeline Status</b></p>
+                    <p><b>Project:</b> ${env.JOB_NAME}</p>
+                    <p><b>Build Number:</b> ${env.BUILD_NUMBER}</p>
+                    <p><b>Status:</b> ${buildStatus}</p>
+                    <p><b>Triggered By:</b> ${buildUser}</p>
+                    <p><b>Build URL:</b>
+                      <a href="${env.BUILD_URL}">${env.BUILD_URL}</a>
+                    </p>
                 """,
                 to: 'ravitejaravirala2@gmail.com',
                 from: 'ravitejaravirala2@gmail.com',
-                replyTo: 'ravitejaravirala2@gmail.comm',
+                replyTo: 'ravitejaravirala2@gmail.com',
                 mimeType: 'text/html',
-                attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
+                attachmentsPattern: '**/trivy*.txt',
+                attachLog: true
             )
-           }
+        }
        }
 
     }
