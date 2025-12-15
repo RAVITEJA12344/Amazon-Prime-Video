@@ -104,8 +104,6 @@ pipeline{
                     </p>
                 """,
                 to: 'ravitejaravirala2@gmail.com',
-                from: 'ravitejaravirala2@gmail.com',
-                replyTo: 'ravitejaravirala2@gmail.com',
                 mimeType: 'text/html',
                 attachmentsPattern: '**/trivy*.txt',
                 attachLog: true
