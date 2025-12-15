@@ -54,6 +54,7 @@ pipeline{
                 }
             }
         }
+		/*
 		stage('Docker Scout Image') {
             steps {
                 script{
@@ -65,6 +66,7 @@ pipeline{
                 }
             }
         }
+		*/
 
         stage("TRIVY-docker-images"){
             steps{
