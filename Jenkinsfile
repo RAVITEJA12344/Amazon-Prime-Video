@@ -48,8 +48,8 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t amazon-prime-video ."
-                       sh "docker tag mohanudayana/amazon-prime-video:latest "
-                       sh "docker push mohanudayana/amazon-prime-video:latest "
+                       sh "docker tag ravi1224/amazon-prime-video:latest "
+                       sh "docker push ravi1224/amazon-prime-video:latest "
                     }
                 }
             }
@@ -58,9 +58,9 @@ pipeline{
             steps {
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh 'docker-scout quickview mohanudayana/amazon-prime-vide:latest'
-                       sh 'docker-scout cves mohanudayana/amazon-prime-video:latest'
-                       sh 'docker-scout recommendations mohanudayana/amazon-prime-video:latest'
+                       sh 'docker-scout quickview ravi1224/amazon-prime-vide:latest'
+                       sh 'docker-scout cves ravi1224/amazon-prime-video:latest'
+                       sh 'docker-scout recommendations ravi1224/amazon-prime-video:latest'
                    }
                 }
             }
@@ -68,12 +68,12 @@ pipeline{
 
         stage("TRIVY-docker-images"){
             steps{
-                sh "trivy mohanudayana/amazon-prime-video:latest > trivyimage.txt" 
+                sh "trivy ravi1224/amazon-prime-video:latest > trivyimage.txt" 
             }
         }
         stage('App Deploy to Docker container'){
             steps{
-                sh 'docker run -d --name amazon-prime-video -p 3000:3000 mohanudayana/amazon-prime-video:latest'
+                sh 'docker run -d --name amazon-prime-video -p 3000:3000 ravi1224/amazon-prime-video:latest'
             }
         }
 
