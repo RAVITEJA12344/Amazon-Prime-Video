@@ -70,7 +70,7 @@ pipeline{
 
         stage("TRIVY-docker-images"){
             steps{
-                sh "trivy ravi1224/amazon-prime-video:latest > trivyimage.txt" 
+                sh "trivy image ravi1224/amazon-prime-video:latest > trivyimage.txt" 
             }
         }
         stage('App Deploy to Docker container'){
