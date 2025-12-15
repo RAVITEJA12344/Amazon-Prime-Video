@@ -84,6 +84,7 @@ pipeline{
         }
 
     }
+	/*
     post {
     always {
         script {
@@ -114,5 +115,16 @@ pipeline{
        }
 
     }
+*/
+post {
+    always {
+        emailext(
+            to: 'ravitejaravirala2@gmail.com',
+            subject: "Jenkins Job ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
+            body: "Build URL: ${env.BUILD_URL}"
+        )
+    }
+}
+
 
 }
