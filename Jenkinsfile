@@ -75,7 +75,11 @@ pipeline{
         }
         stage('App Deploy to Docker container'){
             steps{
-                sh 'docker run -d --name amazon-prime-video -p 3000:3000 ravi1224/amazon-prime-video:latest'
+                sh '''
+          		   docker stop amazon-prime-video || true
+         		   docker rm amazon-prime-video || true
+         		   docker run -d --name amazon-prime-video -p 3000:3000 ravi1224/amazon-prime-video:latest
+      		    '''
             }
         }
 
